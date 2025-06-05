@@ -1,0 +1,133 @@
+table esdc_intake_pt_applications
+	lineageTag: 3ed19c42-811d-4a9a-9f83-880b11cd8daf
+	sourceLineageTag: [esdc].[esdc_intake_pt_applications]
+
+	column Submission_Month
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 7282adbd-b23e-4768-85d9-166e396304da
+		sourceLineageTag: Submission_Month
+		summarizeBy: none
+		sourceColumn: Submission_Month
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Applicant_Type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4e6d590e-6c22-4e62-bd74-949f8623dbf9
+		sourceLineageTag: Applicant_Type
+		summarizeBy: none
+		sourceColumn: Applicant_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_PT
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f170251c-9c96-4e28-97c6-14550ebcf285
+		sourceLineageTag: Member_PT
+		summarizeBy: none
+		sourceColumn: Member_PT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_Area_Type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: bf31dac9-0f72-4433-a87d-c67b16f2b0c2
+		sourceLineageTag: Member_Area_Type
+		summarizeBy: none
+		sourceColumn: Member_Area_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Range
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9808661a-59c0-4a33-bd42-95ecd218b905
+		sourceLineageTag: Age_Range
+		summarizeBy: none
+		sourceColumn: Age_Range
+
+		annotation SummarizationSetBy = Automatic
+
+	column Language
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 00946795-4d78-4f8c-a85d-ea9d897cbd92
+		sourceLineageTag: Language
+		summarizeBy: none
+		sourceColumn: Language
+
+		annotation SummarizationSetBy = Automatic
+
+	column Application_Received
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6f16e92e-28e3-49cd-821a-27a9fdefa3d3
+		sourceLineageTag: Application_Received
+		summarizeBy: none
+		sourceColumn: Application_Received
+
+		annotation SummarizationSetBy = Automatic
+
+	column Application_Completed
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4269487c-3aff-4169-98a6-03dabf8d522f
+		sourceLineageTag: Application_Completed
+		summarizeBy: none
+		sourceColumn: Application_Completed
+
+		annotation SummarizationSetBy = Automatic
+
+	column Eligibility
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 44e61df0-1ea2-4327-9418-fa0d4ed3d751
+		sourceLineageTag: Eligibility
+		summarizeBy: none
+		sourceColumn: Eligibility
+
+		annotation SummarizationSetBy = Automatic
+
+	column Disability
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e4612398-e8ca-442e-aea3-108a163e750a
+		sourceLineageTag: Disability
+		summarizeBy: none
+		sourceColumn: Disability
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Count
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: db8b7917-8865-47e7-bf6d-866ed7c370f0
+		sourceLineageTag: Total_Count
+		summarizeBy: sum
+		sourceColumn: Total_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition esdc_intake_pt_applications = entity
+		mode: directLake
+		source
+			entityName: esdc_intake_pt_applications
+			schemaName: esdc
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,107 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "ExecutePipeline",
+        "typeProperties": {
+          "pipeline": {
+            "referenceName": "de748377-c0d3-abcc-4051-e7e8001d1152",
+            "type": "PipelineReference"
+          },
+          "parameters": {
+            "p_int_schedule_frequency": {
+              "value": "@pipeline().parameters.p_int_schedule_frequency",
+              "type": "Expression"
+            },
+            "p_int_lookup_frequency": {
+              "value": "@pipeline().parameters.p_int_lookup_frequency",
+              "type": "Expression"
+            },
+            "p_array_source_folders": {
+              "value": "@pipeline().parameters.p_array_source_folders",
+              "type": "Expression"
+            },
+            "p_array_lookup_folders": {
+              "value": "@pipeline().parameters.p_array_lookup_folders",
+              "type": "Expression"
+            },
+            "p_string_run_type": {
+              "value": "@pipeline().parameters.p_string_run_type",
+              "type": "Expression"
+            }
+          },
+          "waitOnCompletion": true
+        },
+        "policy": {
+          "secureInput": false
+        },
+        "name": "Invoke 02_Bronze_to_Silver_Orchestrator",
+        "dependsOn": []
+      },
+      {
+        "type": "ExecutePipeline",
+        "typeProperties": {
+          "pipeline": {
+            "referenceName": "4f491cb7-30b5-9112-43c2-7f843eaff1f8",
+            "type": "PipelineReference"
+          },
+          "parameters": {},
+          "waitOnCompletion": true
+        },
+        "policy": {
+          "secureInput": false
+        },
+        "name": "Invoke 03_Silver_to_Gold_Orchestrator",
+        "dependsOn": [
+          {
+            "activity": "Invoke 02_Bronze_to_Silver_Orchestrator",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "p_int_schedule_frequency": {
+        "type": "int",
+        "defaultValue": 60
+      },
+      "p_int_lookup_frequency": {
+        "type": "int",
+        "defaultValue": 1440
+      },
+      "p_array_source_folders": {
+        "type": "array",
+        "defaultValue": [
+          "SunLife/CL90",
+          "SunLife/CL92",
+          "SunLife/FI02",
+          "SunLife/PP08",
+          "SunLife/Contact_Center",
+          "ESDC/Intake/PT/Applications",
+          "ESDC/Intake/PT/Enrolled"
+        ]
+      },
+      "p_array_lookup_folders": {
+        "type": "array",
+        "defaultValue": [
+          "SunLife/Lookup_Tables",
+          "HC/Lookup_Tables"
+        ]
+      },
+      "p_string_run_type": {
+        "type": "string",
+        "defaultValue": "all"
+      }
+    },
+    "variables": {
+      "v_string_lookup_modified_datetime_start": {
+        "type": "String"
+      },
+      "v_string_modified_datetime_start": {
+        "type": "String"
+      }
+    }
+  }
+}

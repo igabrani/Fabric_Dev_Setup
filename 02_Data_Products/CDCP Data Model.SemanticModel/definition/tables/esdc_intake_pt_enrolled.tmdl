@@ -1,0 +1,93 @@
+table esdc_intake_pt_enrolled
+	lineageTag: 69073615-2b27-465b-bd44-e859bb7c8ae1
+	sourceLineageTag: [esdc].[esdc_intake_pt_enrolled]
+
+	column Enrolment_Month
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: ec26b105-296e-4788-87f4-bf23d1925dad
+		sourceLineageTag: Enrolment_Month
+		summarizeBy: none
+		sourceColumn: Enrolment_Month
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Member_PT
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: be2a17b4-22f5-4eb1-92fa-e1cd5f67c3e4
+		sourceLineageTag: Member_PT
+		summarizeBy: none
+		sourceColumn: Member_PT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_Area_Type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1be318f8-1f96-4755-b7f2-08e2e1b1d89f
+		sourceLineageTag: Member_Area_Type
+		summarizeBy: none
+		sourceColumn: Member_Area_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Range
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 73f439d8-c7b2-4697-a58f-989704e865ae
+		sourceLineageTag: Age_Range
+		summarizeBy: none
+		sourceColumn: Age_Range
+
+		annotation SummarizationSetBy = Automatic
+
+	column Language
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9720dca8-b2cc-4f42-a8f0-a69761ea3688
+		sourceLineageTag: Language
+		summarizeBy: none
+		sourceColumn: Language
+
+		annotation SummarizationSetBy = Automatic
+
+	column Enrolled_Status
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a6703ccd-6b09-43ee-a3fe-deb209db6e2e
+		sourceLineageTag: Enrolled_Status
+		summarizeBy: none
+		sourceColumn: Enrolled_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Count
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: c9d10367-70c3-4cc6-9e83-37abf5966dd8
+		sourceLineageTag: Total_Count
+		summarizeBy: sum
+		sourceColumn: Total_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition esdc_intake_pt_enrolled = entity
+		mode: directLake
+		source
+			entityName: esdc_intake_pt_enrolled
+			schemaName: esdc
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

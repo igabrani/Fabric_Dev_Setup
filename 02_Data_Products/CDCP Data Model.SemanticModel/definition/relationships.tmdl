@@ -1,0 +1,132 @@
+relationship 68673977-b348-520e-6347-18edf1af86fa
+	fromColumn: cl90.Provider_ID
+	toColumn: pp08.Provider_ID
+
+relationship ff764056-9e33-1f9b-b1d6-afe5494cbf10
+	fromColumn: fi02.Provider_ID
+	toColumn: pp08.Provider_ID
+
+relationship 6b2c4fde-6236-ff2f-fcca-2825d8e62e58
+	fromColumn: cl90.Age
+	toColumn: grouping_age.Age
+
+relationship 904f952d-aba1-8462-0146-09ba4576440f
+	isActive: false
+	fromColumn: cl90.Facility_PT
+	toColumn: grouping_pt.Abbreviation
+
+relationship 94a78893-4056-972a-81b8-9bf4285ace11
+	fromColumn: cl90.Specialty
+	toColumn: grouping_specialty.Abbreviation
+
+relationship d2b1e2a7-44ce-4709-75e0-c68bf6ebbd91
+	isActive: false
+	fromColumn: cl90.Facility_PT_Alt
+	toColumn: grouping_pt.Abbreviation
+
+relationship 9d0f5a90-74bf-33fc-8c83-db29ea5ba350
+	isActive: false
+	fromColumn: cl90.Member_PT
+	toColumn: grouping_pt.Abbreviation
+
+relationship be0040a0-1628-c78b-6755-1d489ce1b19c
+	isActive: false
+	fromColumn: cl90.Member_PT_Alt
+	toColumn: grouping_pt.Abbreviation
+
+relationship 7fde805b-bf78-6871-ba16-602b6d6503e0
+	isActive: false
+	fromColumn: fi02.Facility_PT
+	toColumn: grouping_pt.Abbreviation
+
+relationship e7d55b4f-7cb2-1396-4474-04cfd69f795c
+	isActive: false
+	fromColumn: fi02.Facility_PT_Alt
+	toColumn: grouping_pt.Abbreviation
+
+relationship 98649db6-a7b8-0683-83aa-4d8ac7e10304
+	isActive: false
+	fromColumn: fi02.Member_PT
+	toColumn: grouping_pt.Abbreviation
+
+relationship d4d11a73-7119-1f52-2327-0c57f6a2989e
+	isActive: false
+	fromColumn: fi02.Member_PT_Alt
+	toColumn: grouping_pt.Abbreviation
+
+relationship 18dd78ab-36dc-8521-f577-0b6b666f65d2
+	fromColumn: esdc_intake_pt_enrolled.Member_PT
+	toColumn: grouping_pt.Abbreviation
+
+relationship ec67d86c-43ac-fcea-09b9-91e69adbb67e
+	fromColumn: esdc_intake_pt_applications.Member_PT
+	toColumn: grouping_pt.Abbreviation
+
+relationship 9b612f80-3c5f-7774-9230-c94c8368b77a
+	isActive: false
+	fromColumn: esdc_intake_pt_applications.Submission_Month
+	toColumn: date_table.Date
+
+relationship 9e6ecb4c-d49d-a229-0d42-a40a1d7a3f0b
+	isActive: false
+	fromColumn: esdc_intake_pt_enrolled.Enrolment_Month
+	toColumn: date_table.Date
+
+relationship 5fec79d8-62a8-001a-efd2-11fd948ed187
+	isActive: false
+	fromColumn: contact_center_metrics.Contact_Date
+	toColumn: date_table.Date
+
+relationship 95ef5de5-a56e-3373-7707-075805d78695
+	isActive: false
+	fromColumn: contact_center_metrics.Source
+	toColumn: date_table.Date
+
+relationship 3f2fe309-872f-3aca-33d9-44ffcfeef644
+	isActive: false
+	fromColumn: fi02.Adjudicated_Date
+	toColumn: date_table.Date
+
+relationship c765a6f1-c787-e447-f94b-bcab4cb7199d
+	isActive: false
+	fromColumn: fi02.CFR_Date
+	toColumn: date_table.Date
+
+relationship bb7e8efc-6e06-ae0a-5b75-559c80d7d380
+	fromColumn: fi02.Claim_Date
+	toColumn: date_table.Date
+
+relationship f0be16f1-a8f5-be29-f385-364e994005f0
+	isActive: false
+	fromColumn: fi02.Source
+	toColumn: date_table.Date
+
+relationship 60f91e65-c904-2e05-7876-585ccfa2c01c
+	fromColumn: cl90.Claim_Date
+	toColumn: date_table.Date
+
+relationship be7ffcc7-7f33-d8b9-19a3-e30d35fec51c
+	isActive: false
+	fromColumn: cl90.Adjudicated_Date
+	toColumn: date_table.Date
+
+relationship 83bfca09-07b4-e157-391d-079d8d75291b
+	isActive: false
+	fromColumn: cl90.Amended_Date
+	toColumn: date_table.Date
+
+relationship 8a8e0bba-e663-7377-d67f-c347b1a56efe
+	isActive: false
+	fromColumn: cl90.Service_Date
+	toColumn: date_table.Date
+
+relationship 43760bfc-9c1e-8d7f-a15c-074689c87ebb
+	isActive: false
+	fromColumn: cl90.Source
+	toColumn: date_table.Date
+
+relationship 87f56a34-bbbe-c8eb-5f38-084a00f80077
+	isActive: false
+	fromColumn: cl90.Submitted_Date
+	toColumn: date_table.Date
+

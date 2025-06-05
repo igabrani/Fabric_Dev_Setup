@@ -1,0 +1,43 @@
+table preauth_decline_codes
+	lineageTag: a7febc86-5eac-4670-aab5-d7dec0e31629
+	sourceLineageTag: [auxiliary].[preauth_decline_codes]
+
+	column Procedure_Code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: bdfd3c63-d802-4fea-b1c8-09d4abac7ebb
+		sourceLineageTag: Procedure_Code
+		summarizeBy: none
+		sourceColumn: Procedure_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cbccb08f-c2d8-4d19-afa0-573a0deaceba
+		sourceLineageTag: Description
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Desc_Simplified
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f4cbc2cd-62de-4cbe-8022-ca5291e75f70
+		sourceLineageTag: Desc_Simplified
+		summarizeBy: none
+		sourceColumn: Desc_Simplified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition preauth_decline_codes = entity
+		mode: directLake
+		source
+			entityName: preauth_decline_codes
+			schemaName: auxiliary
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

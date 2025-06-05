@@ -1,0 +1,20 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "ARCHIVE - Dynamic Dataflow CL90",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Documents": {
+      "queryId": "d36c4f16-6229-48c6-b496-355a0a11566e",
+      "queryName": "Documents"
+    }
+  },
+  "connections": [
+    {
+      "path": "https://022gc.sharepoint.com/sites/InformationManagement-BusinessIntelligenceandDecisionSupp333",
+      "kind": "SharePoint",
+      "connectionId": "{\"ClusterId\":\"f442740e-10ab-4bc3-95fd-921494f5821a\",\"DatasourceId\":\"38171604-ec42-4eb8-8acc-5d706fa732b7\"}"
+    }
+  ]
+}

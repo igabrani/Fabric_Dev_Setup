@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "tabs": [
+      {
+        "id": "fd406660-9591-4a00-b0e8-f6e88daedd6d",
+        "title": "Tab",
+        "content": "//***********************************************************************************************************\n// Here are two articles to help you get started with KQL:\n// KQL reference guide - https://aka.ms/KQLguide\n// SQL - KQL conversions - https://aka.ms/sqlcheatsheet\n//***********************************************************************************************************\n\n// Use \"take\" to view a sample number of records in the table and check the data.\nYOUR_TABLE_HERE\n| take 100\n\n// See how many records are in the table.\nYOUR_TABLE_HERE\n| count\n\n// This query returns the number of ingestions per hour in the given table.\nYOUR_TABLE_HERE\n| summarize IngestionCount = count() by bin(ingestion_time(), 1h)\n\n",
+        "dataSourceId": "de6dab50-9be7-4ca3-8b09-e370540e98f7"
+      }
+    ],
+    "dataSources": [
+      {
+        "type": "Fabric",
+        "id": "de6dab50-9be7-4ca3-8b09-e370540e98f7",
+        "clusterUri": "",
+        "databaseItemId": "7fdc3c4b-303c-946e-4550-612866b7ef74",
+        "databaseItemName": "mo-eventHouse"
+      }
+    ]
+  }
+}

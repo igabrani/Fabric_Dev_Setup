@@ -1,0 +1,161 @@
+table contact_center_metrics
+	lineageTag: 393f4118-d9fc-4154-acd8-a6172d2d318c
+	sourceLineageTag: [sunlife].[contact_center_metrics]
+
+	column Queue_Category
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 46f23c5c-a3b3-4cc4-bb2f-11f0d8ac5d7d
+		sourceLineageTag: Queue_Category
+		summarizeBy: none
+		sourceColumn: Queue_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Language
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: aa296862-50ef-4c39-a702-6a0a6e775148
+		sourceLineageTag: Language
+		summarizeBy: none
+		sourceColumn: Language
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contact_Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 0249b1a0-4870-4736-9af0-2f8c086418ed
+		sourceLineageTag: Contact_Date
+		summarizeBy: none
+		sourceColumn: Contact_Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Service_Level
+		dataType: double
+		sourceProviderType: float
+		lineageTag: a3cc271f-3a49-4fab-b6da-03d98f49c217
+		sourceLineageTag: Service_Level
+		summarizeBy: sum
+		sourceColumn: Service_Level
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Average_Handle_Time
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 62642661-8cab-464c-929c-6f80171058d2
+		sourceLineageTag: Average_Handle_Time
+		summarizeBy: sum
+		sourceColumn: Average_Handle_Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Average_Handle_Time_Mins
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 6806a18c-3440-46d7-a80e-cba8c1f9f748
+		sourceLineageTag: Average_Handle_Time_Mins
+		summarizeBy: sum
+		sourceColumn: Average_Handle_Time_Mins
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Average_Wait_Time
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 4ef03f8b-8b6a-42ee-a280-5c777dea24f6
+		sourceLineageTag: Average_Wait_Time
+		summarizeBy: sum
+		sourceColumn: Average_Wait_Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contacts_Abandoned
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 6f2e2e5e-8c8d-4c3f-84dc-ccef415f584a
+		sourceLineageTag: Contacts_Abandoned
+		summarizeBy: sum
+		sourceColumn: Contacts_Abandoned
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contacts_Handled_Incoming
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 9e12d805-825d-437f-8c7d-aec82d47fa42
+		sourceLineageTag: Contacts_Handled_Incoming
+		summarizeBy: sum
+		sourceColumn: Contacts_Handled_Incoming
+
+		annotation SummarizationSetBy = Automatic
+
+	column Callback_Contacts_Handled
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: ed1293c1-a9f8-4971-8355-d9b8e3ae9369
+		sourceLineageTag: Callback_Contacts_Handled
+		summarizeBy: sum
+		sourceColumn: Callback_Contacts_Handled
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Calls
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 6750bb49-3469-4b3c-9158-b55f8cacf286
+		sourceLineageTag: Total_Calls
+		summarizeBy: sum
+		sourceColumn: Total_Calls
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: e6c8b6a3-d274-472a-99e0-f25ee9151160
+		sourceLineageTag: Source
+		summarizeBy: none
+		sourceColumn: Source
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	partition contact_center_metrics = entity
+		mode: directLake
+		source
+			entityName: contact_center_metrics
+			schemaName: sunlife
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

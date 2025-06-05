@@ -1,0 +1,148 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "2a080a88-0c3d-459f-a4e6-6ce206fc34f9",
+          "workspaceId": "4748fbe5-9b18-4aac-9d74-f79c39ff81db",
+          "parameters": {
+            "source": {
+              "value": "PP08",
+              "type": "string"
+            },
+            "date": {
+              "value": "2024-11-19",
+              "type": "string"
+            },
+            "runType": {
+              "value": "all",
+              "type": "string"
+            },
+            "environment": {
+              "value": "prod",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "PP08 Bronze to Silver",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "2a080a88-0c3d-459f-a4e6-6ce206fc34f9",
+          "workspaceId": "4748fbe5-9b18-4aac-9d74-f79c39ff81db",
+          "parameters": {
+            "source": {
+              "value": "ESDC_Applications_PT",
+              "type": "string"
+            },
+            "date": {
+              "value": "2024-11-01",
+              "type": "string"
+            },
+            "runType": {
+              "value": "all",
+              "type": "string"
+            },
+            "environment": {
+              "value": "prod",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "ESDC Applications PT Bronze to Silver",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "2a080a88-0c3d-459f-a4e6-6ce206fc34f9",
+          "workspaceId": "4748fbe5-9b18-4aac-9d74-f79c39ff81db",
+          "parameters": {
+            "source": {
+              "value": "ESDC_Applications_PT",
+              "type": "string"
+            },
+            "date": {
+              "value": "2024-11-01",
+              "type": "string"
+            },
+            "runType": {
+              "value": "all",
+              "type": "string"
+            },
+            "environment": {
+              "value": "prod",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "ESDC Enrolled PT Bronze to Silver",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "06fc34f9-6ce2-a4e6-459f-0c3d2a080a88",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "source": {
+              "value": "Sunlife_Costing",
+              "type": "string"
+            },
+            "date": {
+              "value": "2024-11-01",
+              "type": "string"
+            },
+            "runType": {
+              "value": "all",
+              "type": "string"
+            },
+            "environment": {
+              "value": "prod",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Sunlife Costing Bronze to Silver",
+        "dependsOn": []
+      }
+    ]
+  }
+}

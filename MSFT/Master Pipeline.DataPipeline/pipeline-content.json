@@ -1,0 +1,521 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@activity('Getting the providers').output.childItems",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "InvokePipeline",
+              "typeProperties": {
+                "parameters": {
+                  "source_path": {
+                    "value": "@concat(item().name,'/in')",
+                    "type": "Expression"
+                  },
+                  "lakehouse_path": {
+                    "value": "@concat('main/',item().name,'/in')",
+                    "type": "Expression"
+                  },
+                  "provider": {
+                    "value": "@item().name",
+                    "type": "Expression"
+                  },
+                  "lakehouse_temp_path": {
+                    "value": "@concat('main/',item().name,'/in/temp')",
+                    "type": "Expression"
+                  }
+                },
+                "waitOnCompletion": true,
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "pipelineId": "8d3c8bc7-7108-9727-4cb2-b614201355bf",
+                "operationType": "InvokeFabricPipeline"
+              },
+              "externalReferences": {
+                "connection": "57ac2174-fdbf-4039-a73b-9ecfb4d09da5"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Invoke provider inbox pipeline",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "5162669e-df15-89dc-4318-b4f09874d800",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "Pipeline_name": {
+                    "value": "inbox_pipeline",
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Logging the Inbox Failed Run Status",
+              "dependsOn": [
+                {
+                  "activity": "Invoke provider inbox pipeline",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "Inbox Run Status",
+                "value": {
+                  "value": "@Json(activity('Logging the Inbox Failed Run Status').output.result.exitValue).RunStatus",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set inbox Run Status",
+              "dependsOn": [
+                {
+                  "activity": "Logging the Inbox Failed Run Status",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "Inbox Run Time",
+                "value": {
+                  "value": "@formatDateTime(Json(activity('Logging the Inbox Failed Run Status').output.result.exitValue).RunDate)",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set inbox Run Time",
+              "dependsOn": [
+                {
+                  "activity": "Logging the Inbox Failed Run Status",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SqlServerStoredProcedure",
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[writeFailedRunsLog]",
+                "storedProcedureParameters": {
+                  "PipelineName": {
+                    "value": "Provider Inbox",
+                    "type": "String"
+                  },
+                  "RunDate": {
+                    "value": {
+                      "value": "@variables('Inbox Run Time')",
+                      "type": "Expression"
+                    },
+                    "type": "Datetime"
+                  },
+                  "RunStatus": {
+                    "value": {
+                      "value": "@variables('Inbox Run Status')",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "Logging_warehouse",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "2707b7f4-4707-4697-b1a1-0d85d3eea937",
+                    "endpoint": "cwip2qsn3yrufi3ixlvmvneje4-4x5uqryytowevhlu66odt74b3m.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "4748fbe5-9b18-4aac-9d74-f79c39ff81db"
+                  },
+                  "annotations": []
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Failed inbox Run Status Log",
+              "dependsOn": [
+                {
+                  "activity": "Set inbox Run Status",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                },
+                {
+                  "activity": "Set inbox Run Time",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "Looping Over The inbox Providers",
+        "dependsOn": [
+          {
+            "activity": "Getting the providers",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "GetMetadata",
+        "typeProperties": {
+          "datasetSettings": {
+            "type": "Binary",
+            "typeProperties": {
+              "location": {
+                "type": "FileServerLocation"
+              }
+            },
+            "externalReferences": {
+              "connection": "92282452-5bcd-46d4-9d2f-b8912edd6edb"
+            },
+            "annotations": []
+          },
+          "fieldList": [
+            "childItems"
+          ],
+          "storeSettings": {
+            "type": "FileServerReadSettings",
+            "recursive": true,
+            "enablePartitionDiscovery": false
+          },
+          "formatSettings": {
+            "type": "BinaryReadSettings"
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Getting the providers",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@activity('Getting the providers').output.childItems",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "IfCondition",
+              "typeProperties": {
+                "expression": {
+                  "value": "@greater(length(activity('Get outbox content').output.childItems), 0)",
+                  "type": "Expression"
+                },
+                "ifTrueActivities": [
+                  {
+                    "type": "InvokePipeline",
+                    "typeProperties": {
+                      "parameters": {
+                        "source_outbox_path": {
+                          "value": "@concat(item().name,'/out')",
+                          "type": "Expression"
+                        },
+                        "lakehouse_outbox_path": {
+                          "value": "@concat('main/',item().name,'/out')",
+                          "type": "Expression"
+                        },
+                        "lakehouse_log_path": {
+                          "value": "@concat('outbox_log/',item().name,'/out')",
+                          "type": "Expression"
+                        }
+                      },
+                      "waitOnCompletion": true,
+                      "workspaceId": "00000000-0000-0000-0000-000000000000",
+                      "pipelineId": "20f4f524-a596-a566-46de-fe5c44273c88",
+                      "operationType": "InvokeFabricPipeline"
+                    },
+                    "externalReferences": {
+                      "connection": "57ac2174-fdbf-4039-a73b-9ecfb4d09da5"
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Invoke Provider Outbox Pipeline",
+                    "dependsOn": []
+                  },
+                  {
+                    "type": "TridentNotebook",
+                    "typeProperties": {
+                      "notebookId": "5162669e-df15-89dc-4318-b4f09874d800",
+                      "workspaceId": "00000000-0000-0000-0000-000000000000",
+                      "parameters": {
+                        "Pipeline_name": {
+                          "value": "outbox_pipeline",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Logging the Outbox Failed Run Status",
+                    "dependsOn": [
+                      {
+                        "activity": "Invoke Provider Outbox Pipeline",
+                        "dependencyConditions": [
+                          "Failed"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SetVariable",
+                    "typeProperties": {
+                      "variableName": "Outbox Run Status",
+                      "value": {
+                        "value": "@Json(activity('Logging the Outbox Failed Run Status').output.result.exitValue).RunStatus\n",
+                        "type": "Expression"
+                      }
+                    },
+                    "policy": {
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Set Pipeline Run Status Outbox",
+                    "dependsOn": [
+                      {
+                        "activity": "Logging the Outbox Failed Run Status",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SetVariable",
+                    "typeProperties": {
+                      "variableName": "Outbox Run Time",
+                      "value": {
+                        "value": "@formatDateTime(Json(activity('Logging the Outbox Failed Run Status').output.result.exitValue).RunDate)",
+                        "type": "Expression"
+                      }
+                    },
+                    "policy": {
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Set Pipeline Run Time Outbox",
+                    "dependsOn": [
+                      {
+                        "activity": "Logging the Outbox Failed Run Status",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SqlServerStoredProcedure",
+                    "typeProperties": {
+                      "storedProcedureName": "[dbo].[writeFailedRunsLog]",
+                      "storedProcedureParameters": {
+                        "PipelineName": {
+                          "value": "Provider Outbox",
+                          "type": "String"
+                        },
+                        "RunDate": {
+                          "value": {
+                            "value": "@variables('Outbox Run Time')",
+                            "type": "Expression"
+                          },
+                          "type": "Datetime"
+                        },
+                        "RunStatus": {
+                          "value": {
+                            "value": "@variables('Outbox Run Status')",
+                            "type": "Expression"
+                          },
+                          "type": "String"
+                        }
+                      }
+                    },
+                    "linkedService": {
+                      "name": "Logging_warehouse",
+                      "properties": {
+                        "type": "DataWarehouse",
+                        "typeProperties": {
+                          "artifactId": "2707b7f4-4707-4697-b1a1-0d85d3eea937",
+                          "endpoint": "cwip2qsn3yrufi3ixlvmvneje4-4x5uqryytowevhlu66odt74b3m.datawarehouse.fabric.microsoft.com",
+                          "workspaceId": "4748fbe5-9b18-4aac-9d74-f79c39ff81db"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Run Status Log Outbox",
+                    "dependsOn": [
+                      {
+                        "activity": "Set Pipeline Run Status Outbox",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      },
+                      {
+                        "activity": "Set Pipeline Run Time Outbox",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "ifFalseActivities": []
+              },
+              "name": "If the outbox folder is not empty",
+              "dependsOn": [
+                {
+                  "activity": "Get outbox content",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "GetMetadata",
+              "typeProperties": {
+                "datasetSettings": {
+                  "type": "Binary",
+                  "typeProperties": {
+                    "location": {
+                      "type": "LakehouseLocation",
+                      "folderPath": {
+                        "value": "@concat('main/',item().name,'/out')",
+                        "type": "Expression"
+                      }
+                    }
+                  },
+                  "linkedService": {
+                    "name": "Files_Lakehouse",
+                    "properties": {
+                      "type": "Lakehouse",
+                      "typeProperties": {
+                        "artifactId": "b835d776-8c0f-a90f-4af4-207b4c00abc9",
+                        "workspaceId": "00000000-0000-0000-0000-000000000000",
+                        "rootFolder": "Files"
+                      },
+                      "annotations": []
+                    }
+                  },
+                  "annotations": []
+                },
+                "fieldList": [
+                  "childItems"
+                ],
+                "storeSettings": {
+                  "type": "LakehouseReadSettings",
+                  "enablePartitionDiscovery": false
+                },
+                "formatSettings": {
+                  "type": "BinaryReadSettings"
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Get outbox content",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "Looping Over the outbox providers",
+        "dependsOn": [
+          {
+            "activity": "Looping Over The inbox Providers",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "variables": {
+      "start_copy": {
+        "type": "String"
+      },
+      "files": {
+        "type": "Array"
+      },
+      "Pipeline Name": {
+        "type": "String"
+      },
+      "Outbox Run Status": {
+        "type": "String"
+      },
+      "Outbox Run Time": {
+        "type": "String"
+      },
+      "Inbox Run Status": {
+        "type": "String"
+      },
+      "Inbox Run Time": {
+        "type": "String"
+      }
+    }
+  }
+}

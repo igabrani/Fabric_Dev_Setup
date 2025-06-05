@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "00_CDCP_Orchestrator"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f5fcdb64-f8d5-a664-456b-5003d9416ec2"
+  }
+}

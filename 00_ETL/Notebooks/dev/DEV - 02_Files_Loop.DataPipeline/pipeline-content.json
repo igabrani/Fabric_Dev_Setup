@@ -1,0 +1,98 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@pipeline().parameters.p_array_files",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "IfCondition",
+              "typeProperties": {
+                "expression": {
+                  "value": "@equals(item().source, pipeline().parameters.p_string_source)",
+                  "type": "Expression"
+                },
+                "ifTrueActivities": [
+                  {
+                    "type": "TridentNotebook",
+                    "typeProperties": {
+                      "notebookId": "06fc34f9-6ce2-a4e6-459f-0c3d2a080a88",
+                      "workspaceId": "00000000-0000-0000-0000-000000000000",
+                      "parameters": {
+                        "source": {
+                          "value": {
+                            "value": "@item().source",
+                            "type": "Expression"
+                          },
+                          "type": "string"
+                        },
+                        "full_path": {
+                          "value": {
+                            "value": "@item().full_path",
+                            "type": "Expression"
+                          },
+                          "type": "string"
+                        },
+                        "date": {
+                          "value": {
+                            "value": "@item().source_date",
+                            "type": "Expression"
+                          },
+                          "type": "string"
+                        },
+                        "runType": {
+                          "value": "single",
+                          "type": "string"
+                        },
+                        "environment": {
+                          "value": "prod",
+                          "type": "string"
+                        },
+                        "pipelineType": {
+                          "value": "single",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "02_Bronze_to_Silver",
+                    "dependsOn": []
+                  }
+                ],
+                "ifFalseActivities": []
+              },
+              "name": "IF files_source EQUALS source",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach p_array_files",
+        "dependsOn": []
+      }
+    ],
+    "parameters": {
+      "p_string_source": {
+        "type": "array"
+      },
+      "p_array_files": {
+        "type": "array"
+      }
+    },
+    "variables": {
+      "p_array_sources": {
+        "type": "String"
+      }
+    }
+  }
+}

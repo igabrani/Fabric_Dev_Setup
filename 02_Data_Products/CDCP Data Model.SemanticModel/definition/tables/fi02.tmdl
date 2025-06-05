@@ -1,0 +1,360 @@
+table fi02
+	lineageTag: bd239cb5-d89d-4cb9-bf6b-d1c1a4dd980c
+	sourceLineageTag: [sunlife_gold].[fi02]
+
+	column Provider_ID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: bcabe96f-aaa2-42c7-9ef3-33c024088608
+		sourceLineageTag: Provider_ID
+		summarizeBy: none
+		sourceColumn: Provider_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facility_ID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2fb280aa-301a-4ffb-831d-600d7efc25c0
+		sourceLineageTag: Facility_ID
+		summarizeBy: none
+		sourceColumn: Facility_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_ID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1f499744-32b9-4864-9069-997cf6492b79
+		sourceLineageTag: Member_ID
+		summarizeBy: none
+		sourceColumn: Member_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Claim_Reference_Number
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6c9a1cb9-dd3c-4968-a114-5505145fcd8b
+		sourceLineageTag: Claim_Reference_Number
+		summarizeBy: none
+		sourceColumn: Claim_Reference_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cheque_Number
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5cd2a8c2-40c1-4995-8dd1-25bfd6905ceb
+		sourceLineageTag: Cheque_Number
+		summarizeBy: none
+		sourceColumn: Cheque_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Billing_Group
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ee2d8e55-eb4c-4997-b8f7-0c57046b0788
+		sourceLineageTag: Billing_Group
+		summarizeBy: none
+		sourceColumn: Billing_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_PT
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 77a674b3-e436-4d1c-89a6-d0c39ce1c7b0
+		sourceLineageTag: Member_PT
+		summarizeBy: none
+		sourceColumn: Member_PT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_PT_Alt
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 496e9149-9f37-4e6d-883b-8aefdcc4adaf
+		sourceLineageTag: Member_PT_Alt
+		summarizeBy: none
+		sourceColumn: Member_PT_Alt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_Postal_Code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1dc85ea5-2190-43af-a3d1-25689fe0fd07
+		sourceLineageTag: Member_Postal_Code
+		summarizeBy: none
+		sourceColumn: Member_Postal_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_FSA
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9376dfaf-5d5b-49eb-b179-6733566a3a90
+		sourceLineageTag: Member_FSA
+		summarizeBy: none
+		sourceColumn: Member_FSA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facility_PT
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ee8e84c2-f266-4fbf-8be7-6332a20a1fa5
+		sourceLineageTag: Facility_PT
+		summarizeBy: none
+		sourceColumn: Facility_PT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facility_PT_Alt
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3b6ba62a-c5d4-4334-9ce4-184833c81280
+		sourceLineageTag: Facility_PT_Alt
+		summarizeBy: none
+		sourceColumn: Facility_PT_Alt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facility_Postal_Code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 90e27d9a-1f16-49b0-9a36-9a30a1affe41
+		sourceLineageTag: Facility_Postal_Code
+		summarizeBy: none
+		sourceColumn: Facility_Postal_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facility_FSA
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 076fdade-ca46-4351-bca9-a3cb5b89095e
+		sourceLineageTag: Facility_FSA
+		summarizeBy: none
+		sourceColumn: Facility_FSA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CFR_Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: bc0f6d7a-d9b3-4a31-8c99-bc3246d6947f
+		sourceLineageTag: CFR_Date
+		summarizeBy: none
+		sourceColumn: CFR_Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Claim_Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 11b22cd3-493c-4d4f-b6a3-0a501be5c426
+		sourceLineageTag: Claim_Date
+		summarizeBy: none
+		sourceColumn: Claim_Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Adjudicated_Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 9429e4a4-affa-4bfe-b7c1-421b6034b790
+		sourceLineageTag: Adjudicated_Date
+		summarizeBy: none
+		sourceColumn: Adjudicated_Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column EFT
+		dataType: double
+		sourceProviderType: float
+		lineageTag: ca0e1347-8856-4be2-b1fc-0655662a9ffd
+		sourceLineageTag: EFT
+		summarizeBy: sum
+		sourceColumn: EFT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cheques
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 80a079a9-4d51-408c-982b-4f6125a8849b
+		sourceLineageTag: Cheques
+		summarizeBy: sum
+		sourceColumn: Cheques
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Payment_Cancellation_EFT
+		dataType: double
+		sourceProviderType: float
+		lineageTag: dad6eb80-ec77-44fc-a0ac-8520c7fc6ab2
+		sourceLineageTag: Payment_Cancellation_EFT
+		summarizeBy: sum
+		sourceColumn: Payment_Cancellation_EFT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Payment_Cancellation_Cheque
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 4c688ec2-5f43-4f56-be81-d437d95ddc8b
+		sourceLineageTag: Payment_Cancellation_Cheque
+		summarizeBy: sum
+		sourceColumn: Payment_Cancellation_Cheque
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Refunds_EFT
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 0df7849a-dace-47e1-bc06-e28c9eccc55a
+		sourceLineageTag: Refunds_EFT
+		summarizeBy: sum
+		sourceColumn: Refunds_EFT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Refunds_Cheque
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 24d31b9f-0bc4-4ab2-bae3-e40f24a7f046
+		sourceLineageTag: Refunds_Cheque
+		summarizeBy: sum
+		sourceColumn: Refunds_Cheque
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Other_Adjustments
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 4e63b753-b16b-4438-be55-707b93c78915
+		sourceLineageTag: Other_Adjustments
+		summarizeBy: sum
+		sourceColumn: Other_Adjustments
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Voids_EFT
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 26ba1db7-4e04-4953-87dd-0f50eb530a7d
+		sourceLineageTag: Voids_EFT
+		summarizeBy: sum
+		sourceColumn: Voids_EFT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Voids_Cheque
+		dataType: double
+		sourceProviderType: float
+		lineageTag: dc646339-f8e6-4c44-9342-8a300fd7d384
+		sourceLineageTag: Voids_Cheque
+		summarizeBy: sum
+		sourceColumn: Voids_Cheque
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Total_Amount
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 97973318-c072-4e05-ab1b-2e3c350ae817
+		sourceLineageTag: Total_Amount
+		summarizeBy: sum
+		sourceColumn: Total_Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Source
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 9378f902-d650-4cc4-9b25-84b4e09d79a7
+		sourceLineageTag: Source
+		summarizeBy: none
+		sourceColumn: Source
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Enrolled_Status
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 6925c9f9-48f9-4a2f-826d-fb902c1a3543
+		sourceLineageTag: Enrolled_Status
+		summarizeBy: none
+		sourceColumn: Enrolled_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fi02 = entity
+		mode: directLake
+		source
+			entityName: fi02
+			schemaName: sunlife_gold
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

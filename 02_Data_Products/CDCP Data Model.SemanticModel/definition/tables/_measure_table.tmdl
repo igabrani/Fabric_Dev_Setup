@@ -1,0 +1,279 @@
+table _measure_table
+	lineageTag: ac7e4b9a-d39a-4d4b-9b00-91d2f590c620
+	sourceLineageTag: [auxiliary].[_measure_table]
+
+	measure FI02_Distinct_Claims = ```
+			CALCULATE(
+						DISTINCTCOUNT(fi02[Claim_Reference_Number]),
+						fi02[Cheque_Number] <> "WRITEOFF"
+					)
+			    
+			```
+		formatString: 0
+		displayFolder: Key Stats
+		lineageTag: af50e929-0413-4cdb-b602-ed03b3e1fb76
+
+		changedProperty = DisplayFolder
+
+	measure FI02_Distinct_Members = ```
+			DISTINCTCOUNT(fi02[Member_ID])
+			    
+			```
+		formatString: 0
+		displayFolder: Key Stats
+		lineageTag: 5cc2326a-ecde-4ef6-b954-72a2fb895e97
+
+		changedProperty = DisplayFolder
+
+	measure FI02_PP_Claims = ```
+			CALCULATE(
+						[FI02_Distinct_Claims],
+						fi02[Enrolled_Status] = TRUE
+					)
+			    
+			```
+		formatString: 0
+		displayFolder: Claim-by-Claim
+		lineageTag: 00dcc8ba-72e3-48fa-be91-98b263e9a007
+
+		changedProperty = DisplayFolder
+
+	measure FI02_CBC_Claims = ```
+			CALCULATE(
+						[FI02_Distinct_Claims],
+						fi02[Enrolled_Status] = FALSE || fi02[Enrolled_Status] = BLANK()
+					)
+			    
+			```
+		formatString: 0
+		displayFolder: Claim-by-Claim
+		lineageTag: 782669b1-5636-47c9-a1a1-c9e84e47a590
+
+		changedProperty = DisplayFolder
+
+	measure FI02_CBC_Claims_Percentage = ```
+			DIVIDE([FI02_CBC_Claims], [FI02_Distinct_Claims], 0)
+			    
+			```
+		displayFolder: Claim-by-Claim
+		lineageTag: 33d3090e-e1ea-4ee3-994d-101682066d97
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FI02_PP_Members = ```
+			CALCULATE(
+						[FI02_Distinct_Members],
+						fi02[Enrolled_Status] = TRUE
+					)
+			    
+			```
+		formatString: 0
+		displayFolder: Claim-by-Claim
+		lineageTag: 1d17a174-ed61-43ba-93c8-b689ac48df9a
+
+		changedProperty = DisplayFolder
+
+	measure FI02_CBC_Members = ```
+			CALCULATE(
+						[FI02_Distinct_Members],
+						fi02[Enrolled_Status] = FALSE || fi02[Enrolled_Status] = BLANK()
+					)
+			    
+			```
+		formatString: 0
+		displayFolder: Claim-by-Claim
+		lineageTag: 7e87456a-9877-4452-8cde-8903c6bf5d33
+
+		changedProperty = DisplayFolder
+
+	measure FI02_CBC_Members_Percentage = ```
+			DIVIDE([FI02_CBC_Members], [FI02_Distinct_Members], 0)
+			
+			
+			```
+		displayFolder: Claim-by-Claim
+		lineageTag: fba66bc1-9cdb-4a12-8630-334343d14dd9
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FI02_Distinct_Claims_Member_PT = ```
+			CALCULATE(
+						[FI02_Distinct_Claims], USERELATIONSHIP(fi02[Member_PT], grouping_pt[Abbreviation])
+					)
+			
+			
+			```
+		formatString: 0
+		displayFolder: Key Stats
+		lineageTag: 986c75e0-d7a7-4b5b-94ca-308d75682c20
+
+		changedProperty = DisplayFolder
+
+	measure FI02_Distinct_Members_Member_PT = ```
+			CALCULATE(
+						[FI02_Distinct_Members], USERELATIONSHIP(fi02[Member_PT], grouping_pt[Abbreviation])
+					)
+			
+			
+			```
+		formatString: 0
+		displayFolder: Key Stats
+		lineageTag: 24e1cbfe-9d5a-4a04-af6f-4b6f8e4cd00a
+
+		changedProperty = DisplayFolder
+
+	measure FI02_Total_Amount_Sum = ```
+			CALCULATE(
+					SUM(fi02[Total_Amount])
+				)
+			
+			
+			```
+		displayFolder: Key Stats
+		lineageTag: 597ee76a-7391-49e5-bbab-34249c7f33ab
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FI02_Total_Amount_Sum_Member_PT = ```
+			CALCULATE(
+					[FI02_Total_Amount_Sum], USERELATIONSHIP(fi02[Member_PT], grouping_pt[Abbreviation])
+				)
+			
+			
+			```
+		displayFolder: Key Stats
+		lineageTag: 1fc2008b-b771-4726-8a96-2e71d3235ba4
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FI02_PP_Claims_Member_PT = ```
+			CALCULATE(
+					[FI02_PP_Claims], USERELATIONSHIP(fi02[Member_PT], grouping_pt[Abbreviation])
+				)
+			
+			
+			```
+		formatString: 0
+		displayFolder: Claim-by-Claim
+		lineageTag: 1b7270cc-c2b0-4961-923e-594260b4b34e
+
+		changedProperty = DisplayFolder
+
+	measure FI02_CBC_Claims_Member_PT = ```
+			CALCULATE(
+					[FI02_CBC_Claims], USERELATIONSHIP(fi02[Member_PT], grouping_pt[Abbreviation])
+				)
+			
+			
+			```
+		formatString: 0
+		displayFolder: Claim-by-Claim
+		lineageTag: db32ba6e-db9a-4160-b46b-88c373faeb5a
+
+		changedProperty = DisplayFolder
+
+	measure FI02_CBC_Claims_Percentage_Member_PT = ```
+			CALCULATE(
+					[FI02_CBC_Claims_Percentage], USERELATIONSHIP(fi02[Member_PT], grouping_pt[Abbreviation])
+				)
+			
+			
+			```
+		displayFolder: Claim-by-Claim
+		lineageTag: 6b83c365-7c52-49ba-8f74-fafab1bf120d
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FI02_PP_Members_Member_PT = ```
+			CALCULATE(
+					[FI02_PP_Members], USERELATIONSHIP(fi02[Member_PT], grouping_pt[Abbreviation])
+				)
+			
+			
+			```
+		displayFolder: Claim-by-Claim
+		lineageTag: 322c2519-7402-4aad-9eaa-6e76c5c3677f
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FI02_CBC_Members_Member_PT = ```
+			CALCULATE(
+					[FI02_CBC_Members], USERELATIONSHIP(fi02[Member_PT], grouping_pt[Abbreviation])
+				)
+			
+			
+			```
+		formatString: 0
+		displayFolder: Claim-by-Claim
+		lineageTag: 911fc5bb-64ee-4a82-b26c-469229261a41
+
+		changedProperty = DisplayFolder
+
+	measure FI02_CBC_Members_Percentage_Member_PT = ```
+			CALCULATE(
+					[FI02_CBC_Members_Percentage], USERELATIONSHIP(fi02[Member_PT], grouping_pt[Abbreviation])
+				)
+			
+			
+			```
+		displayFolder: Claim-by-Claim
+		lineageTag: 628490de-44d3-4871-9a5f-5781b3306622
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		sourceProviderType: bigint
+		displayFolder: Z_Ignore
+		lineageTag: a2eb6439-b547-470e-9814-c075bfaa6b40
+		sourceLineageTag: ID
+		summarizeBy: count
+		sourceColumn: ID
+
+		changedProperty = IsHidden
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+	column Col1
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		displayFolder: Z_Ignore
+		lineageTag: 1aacd7fb-e7d2-4811-bfca-52268167f452
+		sourceLineageTag: Col1
+		summarizeBy: none
+		sourceColumn: Col1
+
+		changedProperty = IsHidden
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _measure_table = entity
+		mode: directLake
+		source
+			entityName: _measure_table
+			schemaName: auxiliary
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,87 @@
+table grouping_age
+	lineageTag: 09513e7b-bcad-4a71-a0fb-815d491293d9
+	sourceLineageTag: [grouping].[grouping_age]
+
+	column Age
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: a49afb16-82d2-40a6-b4ab-05db99543f52
+		sourceLineageTag: Age
+		summarizeBy: none
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Group_1
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5d7a86f4-a54e-4e9c-aef1-6497a32fd0ae
+		sourceLineageTag: Age_Group_1
+		summarizeBy: none
+		sourceColumn: Age_Group_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Group_1_Sort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: cda09950-d855-4d29-aa66-05f11ba443f7
+		sourceLineageTag: Age_Group_1_Sort
+		summarizeBy: none
+		sourceColumn: Age_Group_1_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Group_2
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 81f72bcb-278a-46fa-8b73-3efb22d8e4db
+		sourceLineageTag: Age_Group_2
+		summarizeBy: none
+		sourceColumn: Age_Group_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Group_2_Sort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 9bdb695b-e040-4119-a696-dc87f01dcd14
+		sourceLineageTag: Age_Group_2_Sort
+		summarizeBy: none
+		sourceColumn: Age_Group_2_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Group_3
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2c9416fc-3845-49b4-b30c-9d556a5c2841
+		sourceLineageTag: Age_Group_3
+		summarizeBy: none
+		sourceColumn: Age_Group_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Group_3_Sort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 39d141a3-9f3b-4507-a503-9dc5ee44c90b
+		sourceLineageTag: Age_Group_3_Sort
+		summarizeBy: none
+		sourceColumn: Age_Group_3_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition grouping_age = entity
+		mode: directLake
+		source
+			entityName: grouping_age
+			schemaName: grouping
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,199 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@pipeline().parameters.p_array_source_folders",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "ExecutePipeline",
+              "typeProperties": {
+                "pipeline": {
+                  "referenceName": "c2b47080-e4f6-b6f1-46f5-79d45d4e5b90",
+                  "type": "PipelineReference"
+                },
+                "parameters": {
+                  "p_string_folder_name": {
+                    "value": "@item()",
+                    "type": "Expression"
+                  },
+                  "p_string_modified_datetime_start": {
+                    "value": "@variables('v_string_modified_datetime_start')",
+                    "type": "Expression"
+                  }
+                },
+                "waitOnCompletion": true
+              },
+              "policy": {
+                "secureInput": false
+              },
+              "name": "Invoke 02_Metadata_Reader",
+              "dependsOn": []
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "v_array_current_files",
+                "value": {
+                  "value": "@union(variables('v_array_all_files'), activity('Invoke 02_Metadata_Reader').output.pipelineReturnValue.rv_array_final_file_list)",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "v_array_current_files",
+              "dependsOn": [
+                {
+                  "activity": "Invoke 02_Metadata_Reader",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "v_array_all_files",
+                "value": {
+                  "value": "@variables('v_array_current_files')",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "v_array_all_files",
+              "dependsOn": [
+                {
+                  "activity": "v_array_current_files",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "ForEach Folder",
+        "dependsOn": [
+          {
+            "activity": "v_string_modified_datetime_start",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@variables('v_array_all_files')",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "06fc34f9-6ce2-a4e6-459f-0c3d2a080a88",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "source": {
+                    "value": {
+                      "value": "@substring(item(), 0, 4)",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "date": {
+                    "value": {
+                      "value": "@substring(item(), add(lastIndexOf(item(), '_'), 1), 10)",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "runType": {
+                    "value": "single",
+                    "type": "string"
+                  },
+                  "environment": {
+                    "value": "prod",
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Bronze_to_Silver",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach New File",
+        "dependsOn": [
+          {
+            "activity": "ForEach Folder",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "v_string_modified_datetime_start",
+          "value": {
+            "value": "@string(addMinutes(utcNow(), mul(pipeline().parameters.p_int_schedule_frequency, -1)))",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "v_string_modified_datetime_start",
+        "dependsOn": []
+      }
+    ],
+    "parameters": {
+      "p_int_schedule_frequency": {
+        "type": "int",
+        "defaultValue": 10
+      },
+      "p_array_source_folders": {
+        "type": "array",
+        "defaultValue": [
+          "SunLife/CL90",
+          "SunLife/FI02",
+          "SunLife/PP08"
+        ]
+      }
+    },
+    "variables": {
+      "v_string_modified_datetime_start": {
+        "type": "String"
+      },
+      "v_array_current_files": {
+        "type": "Array"
+      },
+      "v_array_all_files": {
+        "type": "Array"
+      }
+    }
+  }
+}

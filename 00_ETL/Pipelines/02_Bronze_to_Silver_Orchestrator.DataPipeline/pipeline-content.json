@@ -1,0 +1,243 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "IfCondition",
+        "typeProperties": {
+          "expression": {
+            "value": "@bool(startswith(pipeline().parameters.p_string_run_type,'single'))",
+            "type": "Expression"
+          },
+          "ifTrueActivities": [
+            {
+              "type": "ExecutePipeline",
+              "typeProperties": {
+                "pipeline": {
+                  "referenceName": "67e1d2ae-3d05-a3f0-4167-6dd90a18a502",
+                  "type": "PipelineReference"
+                },
+                "parameters": {
+                  "p_int_schedule_frequency": {
+                    "value": "@pipeline().parameters.p_int_schedule_frequency",
+                    "type": "Expression"
+                  },
+                  "p_array_source_folders": {
+                    "value": "@pipeline().parameters.p_array_source_folders",
+                    "type": "Expression"
+                  }
+                },
+                "waitOnCompletion": true
+              },
+              "policy": {
+                "secureInput": false
+              },
+              "name": "Invoke Bronze_to_Silver_Single",
+              "dependsOn": []
+            }
+          ],
+          "ifFalseActivities": [
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "06fc34f9-6ce2-a4e6-459f-0c3d2a080a88",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "source": {
+                    "value": "CL90",
+                    "type": "string"
+                  },
+                  "date": {
+                    "value": "",
+                    "type": "string"
+                  },
+                  "runType": {
+                    "value": "all",
+                    "type": "string"
+                  },
+                  "environment": {
+                    "value": "prod",
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "CL90 Bronze to Silver ALL",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "06fc34f9-6ce2-a4e6-459f-0c3d2a080a88",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "source": {
+                    "value": "FI02",
+                    "type": "string"
+                  },
+                  "date": {
+                    "value": "",
+                    "type": "string"
+                  },
+                  "runType": {
+                    "value": "all",
+                    "type": "string"
+                  },
+                  "environment": {
+                    "value": "prod",
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "FI02 Bronze to Silver ALL",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "06fc34f9-6ce2-a4e6-459f-0c3d2a080a88",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "source": {
+                    "value": "Contact_Center_Metrics",
+                    "type": "string"
+                  },
+                  "date": {
+                    "value": "",
+                    "type": "string"
+                  },
+                  "runType": {
+                    "value": "all",
+                    "type": "string"
+                  },
+                  "environment": {
+                    "value": "prod",
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Contact Center Metrics Bronze to Silver ALL",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "06fc34f9-6ce2-a4e6-459f-0c3d2a080a88",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "source": {
+                    "value": "CL92",
+                    "type": "string"
+                  },
+                  "date": {
+                    "value": "",
+                    "type": "string"
+                  },
+                  "runType": {
+                    "value": "all",
+                    "type": "string"
+                  },
+                  "environment": {
+                    "value": "prod",
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "CL92 Bronze to Silver ALL",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "If p_string_runType equals single",
+        "dependsOn": [
+          {
+            "activity": "Invoke Bronze_to_Silver Lookup Tables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ExecutePipeline",
+        "typeProperties": {
+          "pipeline": {
+            "referenceName": "67e1d2ae-3d05-a3f0-4167-6dd90a18a502",
+            "type": "PipelineReference"
+          },
+          "parameters": {
+            "p_int_schedule_frequency": {
+              "value": "@pipeline().parameters.p_int_lookup_frequency",
+              "type": "Expression"
+            },
+            "p_array_source_folders": {
+              "value": "@pipeline().parameters.p_array_lookup_folders",
+              "type": "Expression"
+            }
+          },
+          "waitOnCompletion": true
+        },
+        "policy": {
+          "secureInput": false
+        },
+        "name": "Invoke Bronze_to_Silver Lookup Tables",
+        "dependsOn": []
+      }
+    ],
+    "parameters": {
+      "p_int_schedule_frequency": {
+        "type": "int",
+        "defaultValue": 10
+      },
+      "p_int_lookup_frequency": {
+        "type": "int",
+        "defaultValue": 1440
+      },
+      "p_array_source_folders": {
+        "type": "array",
+        "defaultValue": [
+          "SunLife/CL90",
+          "SunLife/FI02",
+          "SunLife/PP08"
+        ]
+      },
+      "p_array_lookup_folders": {
+        "type": "array",
+        "defaultValue": [
+          "SunLife/Lookup_Tables",
+          "HC/Lookup_Tables"
+        ]
+      },
+      "p_string_run_type": {
+        "type": "string",
+        "defaultValue": "single"
+      }
+    }
+  }
+}

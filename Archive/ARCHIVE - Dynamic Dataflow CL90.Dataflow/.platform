@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "ARCHIVE - Dynamic Dataflow CL90"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d557fc8b-4190-b867-40d2-4273a59adae1"
+  }
+}

@@ -1,0 +1,95 @@
+table grouping_specialty
+	lineageTag: 5fe6f684-243e-4633-b61c-0d88c0348ab7
+	sourceLineageTag: [grouping].[grouping_specialty]
+
+	column Abbreviation
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b977d2e2-a6c2-469e-b5fd-8263ffb91046
+		sourceLineageTag: Abbreviation
+		summarizeBy: none
+		sourceColumn: Abbreviation
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b146c9a2-861c-4608-9ddc-079b39777fcc
+		sourceLineageTag: Specialty
+		summarizeBy: none
+		sourceColumn: Specialty
+		sortByColumn: Specialty_Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty_Sort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: ad113696-3b75-4501-bb0f-3fe21d29da58
+		sourceLineageTag: Specialty_Sort
+		summarizeBy: none
+		sourceColumn: Specialty_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty_Group_1
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0792bca7-82f2-421f-96f2-e782cf7cc771
+		sourceLineageTag: Specialty_Group_1
+		summarizeBy: none
+		sourceColumn: Specialty_Group_1
+		sortByColumn: Specialty_Group_1_Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty_Group_1_Sort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 7fc1f5d3-a60b-4fb6-96dc-04e8823c4acc
+		sourceLineageTag: Specialty_Group_1_Sort
+		summarizeBy: none
+		sourceColumn: Specialty_Group_1_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty_Group_2
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cf4a5a49-c322-4efc-b6ac-183f67e50257
+		sourceLineageTag: Specialty_Group_2
+		summarizeBy: none
+		sourceColumn: Specialty_Group_2
+		sortByColumn: Specialty_Group_2_Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty_Group_2_Sort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: d6e736d8-a86d-473b-8923-bdd618364cb9
+		sourceLineageTag: Specialty_Group_2_Sort
+		summarizeBy: none
+		sourceColumn: Specialty_Group_2_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition grouping_specialty = entity
+		mode: directLake
+		source
+			entityName: grouping_specialty
+			schemaName: grouping
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

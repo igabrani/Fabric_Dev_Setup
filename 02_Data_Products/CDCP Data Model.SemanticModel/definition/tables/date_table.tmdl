@@ -1,0 +1,489 @@
+table date_table
+	lineageTag: 42453a67-e71c-4705-851f-d8bb76a6b5f9
+	sourceLineageTag: [auxiliary].[date_table]
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 3c3e5254-427a-43d0-95c8-aaa79b19df2a
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Date_ID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 220521da-4ebc-483b-91c6-fe26959cf578
+		sourceLineageTag: Date_ID
+		summarizeBy: count
+		sourceColumn: Date_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 02fbec0c-6884-44b4-8f00-25a62ddcea29
+		sourceLineageTag: Year
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fiscal_Quarter
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 569ea6cf-2f61-40dd-9470-ebbd8963c76c
+		sourceLineageTag: Fiscal_Quarter
+		summarizeBy: sum
+		sourceColumn: Fiscal_Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 7e611614-e9f3-4102-a920-1849d7094fc4
+		sourceLineageTag: Quarter
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 7d360517-9851-4e64-a393-aedb749ee16c
+		sourceLineageTag: Month
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 988ee67e-c443-400a-8e37-bb00793ab6f2
+		sourceLineageTag: Day
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6b650f94-de2e-46d5-ae5c-cd013bcadfed
+		sourceLineageTag: Week
+		summarizeBy: sum
+		sourceColumn: Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year_Start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 49e53745-b94e-4170-85bd-c0e834bf707a
+		sourceLineageTag: Year_Start
+		summarizeBy: none
+		sourceColumn: Year_Start
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Year_End
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: d11b96c2-432e-4e80-bd49-dc7a8f185265
+		sourceLineageTag: Year_End
+		summarizeBy: none
+		sourceColumn: Year_End
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Quarter_Start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: face6934-c4f0-463a-874d-f10e8e5f8f58
+		sourceLineageTag: Quarter_Start
+		summarizeBy: none
+		sourceColumn: Quarter_Start
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Quarter_End
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 8395e74e-7171-413c-bf01-387d73ef25bc
+		sourceLineageTag: Quarter_End
+		summarizeBy: none
+		sourceColumn: Quarter_End
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Month_Start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 6d32c02e-a55a-44ab-af37-0bc04fae95d1
+		sourceLineageTag: Month_Start
+		summarizeBy: none
+		sourceColumn: Month_Start
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Month_End
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 566e7adc-ecfd-436a-96d0-0447283e1302
+		sourceLineageTag: Month_End
+		summarizeBy: none
+		sourceColumn: Month_End
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Week_Start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 0b318e75-3861-4c88-81bf-f417b70b0b6a
+		sourceLineageTag: Week_Start
+		summarizeBy: none
+		sourceColumn: Week_Start
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Week_End
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 697a2f02-07e7-410e-9989-fb4fa7d22c2f
+		sourceLineageTag: Week_End
+		summarizeBy: none
+		sourceColumn: Week_End
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Year_Month_String
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5f7787c9-ae30-4f31-92ba-bc5e8c7dc611
+		sourceLineageTag: Year_Month_String
+		summarizeBy: none
+		sourceColumn: Year_Month_String
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Name_Long
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c3f4c423-233b-47a3-b5db-3d0e19409d70
+		sourceLineageTag: Quarter_Name_Long
+		summarizeBy: none
+		sourceColumn: Quarter_Name_Long
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Name_Short
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 23aadca7-c7d4-4aad-852c-fda1b62bdd10
+		sourceLineageTag: Quarter_Name_Short
+		summarizeBy: none
+		sourceColumn: Quarter_Name_Short
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Number_String
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2e1fb2d3-682c-483d-9041-f7eddf221fd3
+		sourceLineageTag: Quarter_Number_String
+		summarizeBy: none
+		sourceColumn: Quarter_Number_String
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Name_Long
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 44fc86d4-b7e2-4543-bcc5-5d3630500ef8
+		sourceLineageTag: Month_Name_Long
+		summarizeBy: none
+		sourceColumn: Month_Name_Long
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Name_Short
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 495173a7-0768-4aa8-aafa-838e9ea76587
+		sourceLineageTag: Month_Name_Short
+		summarizeBy: none
+		sourceColumn: Month_Name_Short
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Number_String
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 984bec92-327e-421c-a4ab-b8ace9db8b7b
+		sourceLineageTag: Month_Number_String
+		summarizeBy: none
+		sourceColumn: Month_Number_String
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Name_Long
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 76c53402-e14e-4184-b029-b71092025b01
+		sourceLineageTag: Week_Name_Long
+		summarizeBy: none
+		sourceColumn: Week_Name_Long
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Name_Short
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 680e0eb3-1e67-4fdc-a770-43c031cc9500
+		sourceLineageTag: Week_Name_Short
+		summarizeBy: none
+		sourceColumn: Week_Name_Short
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Number_String
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3506b9a2-bb65-419c-a0d5-688c022679e7
+		sourceLineageTag: Week_Number_String
+		summarizeBy: none
+		sourceColumn: Week_Number_String
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day_Number_String
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ef24f009-6af0-48c1-a6a2-375724a3830b
+		sourceLineageTag: Day_Number_String
+		summarizeBy: none
+		sourceColumn: Day_Number_String
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day_Of_Week
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b9660202-fbd3-4fc1-9305-573aa51a60bb
+		sourceLineageTag: Day_Of_Week
+		summarizeBy: sum
+		sourceColumn: Day_Of_Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day_Of_Week_Name_Long
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2253a7e2-f84f-436e-b6bb-af0a71db4dd8
+		sourceLineageTag: Day_Of_Week_Name_Long
+		summarizeBy: none
+		sourceColumn: Day_Of_Week_Name_Long
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day_Of_Week_Name_Short
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c264fb96-8ab0-4e59-a12e-81a47d94a955
+		sourceLineageTag: Day_Of_Week_Name_Short
+		summarizeBy: none
+		sourceColumn: Day_Of_Week_Name_Short
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day_Of_Month
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 48ae58aa-22bf-482a-b187-0730b31c4796
+		sourceLineageTag: Day_Of_Month
+		summarizeBy: sum
+		sourceColumn: Day_Of_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day_Of_Year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 370ad50f-0891-4023-b148-976149bda3c7
+		sourceLineageTag: Day_Of_Year
+		summarizeBy: sum
+		sourceColumn: Day_Of_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fiscal_Year
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2df5bf0f-c68f-477d-ab87-b4422fdb1a53
+		sourceLineageTag: Fiscal_Year
+		summarizeBy: none
+		sourceColumn: Fiscal_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Holiday
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 1170d1a5-6b32-482e-893f-a7ecbbe22bd9
+		sourceLineageTag: Holiday
+		summarizeBy: sum
+		sourceColumn: Holiday
+
+		annotation SummarizationSetBy = Automatic
+
+	column Include_Days
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 40347f9f-d8c7-4d70-8943-f165b96074df
+		sourceLineageTag: Include_Days
+		summarizeBy: sum
+		sourceColumn: Include_Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year_Number
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2c35dfe1-2359-47da-8683-afce957eca55
+		sourceLineageTag: Year_Number
+		summarizeBy: sum
+		sourceColumn: Year_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Friday_Start
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4e748236-b1fc-4a24-81bb-d5749c8b8183
+		sourceLineageTag: Week_Friday_Start
+		summarizeBy: sum
+		sourceColumn: Week_Friday_Start
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Friday_Start_With_Year_Number
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e6ccd7bf-51c6-4a33-8bfe-af734849d62a
+		sourceLineageTag: Week_Friday_Start_With_Year_Number
+		summarizeBy: sum
+		sourceColumn: Week_Friday_Start_With_Year_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	partition date_table = entity
+		mode: directLake
+		source
+			entityName: date_table
+			schemaName: auxiliary
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

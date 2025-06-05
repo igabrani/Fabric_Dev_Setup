@@ -1,0 +1,108 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@pipeline().parameters.p_array_sources_priority_1",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "ExecutePipeline",
+              "typeProperties": {
+                "pipeline": {
+                  "referenceName": "8f3bfd93-8503-a91c-4d78-8ec8c4c7d135",
+                  "type": "PipelineReference"
+                },
+                "parameters": {
+                  "p_string_source": {
+                    "value": "@item()",
+                    "type": "Expression"
+                  },
+                  "p_array_files": {
+                    "value": "@pipeline().parameters.p_array_files_priority_1",
+                    "type": "Expression"
+                  }
+                },
+                "waitOnCompletion": true
+              },
+              "policy": {
+                "secureInput": false
+              },
+              "name": "Invoke 02_Files_Loop_priority_1",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach p_array_sources_priority_1",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@pipeline().parameters.p_array_sources_priority_2",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "ExecutePipeline",
+              "typeProperties": {
+                "pipeline": {
+                  "referenceName": "8f3bfd93-8503-a91c-4d78-8ec8c4c7d135",
+                  "type": "PipelineReference"
+                },
+                "parameters": {
+                  "p_string_source": {
+                    "value": "@item()",
+                    "type": "Expression"
+                  },
+                  "p_array_files": {
+                    "value": "@pipeline().parameters.p_array_files_priority_2",
+                    "type": "Expression"
+                  }
+                },
+                "waitOnCompletion": true
+              },
+              "policy": {
+                "secureInput": false
+              },
+              "name": "Invoke 02_Files_Loop_priority_2",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach p_array_sources_priority_2",
+        "dependsOn": [
+          {
+            "activity": "ForEach p_array_sources_priority_1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "p_array_sources_priority_1": {
+        "type": "array"
+      },
+      "p_array_sources_priority_2": {
+        "type": "array"
+      },
+      "p_array_files_priority_1": {
+        "type": "array"
+      },
+      "p_array_files_priority_2": {
+        "type": "array"
+      }
+    },
+    "variables": {
+      "test": {
+        "type": "String"
+      }
+    }
+  }
+}

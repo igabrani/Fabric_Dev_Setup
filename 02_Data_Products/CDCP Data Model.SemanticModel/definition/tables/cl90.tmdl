@@ -1,0 +1,537 @@
+table cl90
+	lineageTag: 693cac64-c4cf-4dfd-ab53-d3846d13090d
+	sourceLineageTag: [sunlife_gold].[cl90]
+
+	column Claim_Reference_Number
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 406abe1e-8fd6-4969-a341-c1b174575d71
+		sourceLineageTag: Claim_Reference_Number
+		summarizeBy: none
+		sourceColumn: Claim_Reference_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_ID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f8c811ad-02fa-403d-931d-ba90ba1f0163
+		sourceLineageTag: Member_ID
+		summarizeBy: none
+		sourceColumn: Member_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_PT
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 74e65920-916c-4ff9-8dd2-fe16531f032c
+		sourceLineageTag: Member_PT
+		summarizeBy: none
+		sourceColumn: Member_PT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_PT_Alt
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f4de8168-4d7c-45af-aa67-28fc19b44076
+		sourceLineageTag: Member_PT_Alt
+		summarizeBy: none
+		sourceColumn: Member_PT_Alt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_Postal_Code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 52a09c1b-852f-459a-950e-6583326739cd
+		sourceLineageTag: Member_Postal_Code
+		summarizeBy: none
+		sourceColumn: Member_Postal_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Member_FSA
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 84a8b34b-b858-45cc-8bca-47194637acd0
+		sourceLineageTag: Member_FSA
+		summarizeBy: none
+		sourceColumn: Member_FSA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2e12e2a9-596b-4944-8a06-d9b8fe23dae3
+		sourceLineageTag: Age
+		summarizeBy: none
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_ID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 724c7785-2ccc-49c8-9f39-d10d942de509
+		sourceLineageTag: Provider_ID
+		summarizeBy: none
+		sourceColumn: Provider_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facility_ID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6470f17a-933a-49eb-b20c-00344aa049ea
+		sourceLineageTag: Facility_ID
+		summarizeBy: none
+		sourceColumn: Facility_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facility_PT
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ce4c2e75-e9a5-4dba-b4e6-000ef0d7998e
+		sourceLineageTag: Facility_PT
+		summarizeBy: none
+		sourceColumn: Facility_PT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facility_PT_Alt
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 26b870a8-f989-47af-aa4f-cb55d952061a
+		sourceLineageTag: Facility_PT_Alt
+		summarizeBy: none
+		sourceColumn: Facility_PT_Alt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facility_Postal_Code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3771b788-5c45-4a7d-9453-6085fc79d0ac
+		sourceLineageTag: Facility_Postal_Code
+		summarizeBy: none
+		sourceColumn: Facility_Postal_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facility_FSA
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7cbac88c-6824-4864-903b-cc13f206d0e8
+		sourceLineageTag: Facility_FSA
+		summarizeBy: none
+		sourceColumn: Facility_FSA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Participation_Type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a04f6d5a-0200-4169-a307-e0fbefd97483
+		sourceLineageTag: Provider_Participation_Type
+		summarizeBy: none
+		sourceColumn: Provider_Participation_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9b3f07c0-2a80-4794-a3bc-e545301b1b8c
+		sourceLineageTag: Specialty
+		summarizeBy: none
+		sourceColumn: Specialty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Co_Pay_Tier
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4d70d491-26fd-4265-95e0-7eca1e7689fb
+		sourceLineageTag: Co_Pay_Tier
+		summarizeBy: none
+		sourceColumn: Co_Pay_Tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benefit_Category
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c84b46fd-b9ce-43ff-87aa-5659a361251c
+		sourceLineageTag: Benefit_Category
+		summarizeBy: none
+		sourceColumn: Benefit_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tooth_Number
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 69c214f4-ce56-4244-9861-952785d7486f
+		sourceLineageTag: Tooth_Number
+		summarizeBy: none
+		sourceColumn: Tooth_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tooth_Surface
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 16c54b8a-c0cd-4300-9113-5babecd1667d
+		sourceLineageTag: Tooth_Surface
+		summarizeBy: none
+		sourceColumn: Tooth_Surface
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service_Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 898cd2ef-1f18-41b6-8413-61f918043aaf
+		sourceLineageTag: Service_Date
+		summarizeBy: none
+		sourceColumn: Service_Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Claim_Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: c8882b27-d5a1-4b5d-bcd1-7d3f22ee704f
+		sourceLineageTag: Claim_Date
+		summarizeBy: none
+		sourceColumn: Claim_Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Submitted_Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 2faf197d-952c-418c-b8a4-38beca15c183
+		sourceLineageTag: Submitted_Date
+		summarizeBy: none
+		sourceColumn: Submitted_Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Adjudicated_Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: dc4dca2c-25f7-4369-a66f-43d0b0677a89
+		sourceLineageTag: Adjudicated_Date
+		summarizeBy: none
+		sourceColumn: Adjudicated_Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Amended_Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 4c9563f7-b788-4750-9100-ea8c357b311a
+		sourceLineageTag: Amended_Date
+		summarizeBy: none
+		sourceColumn: Amended_Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Paper_Claim_Indicator
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 69886991-f089-47e3-8777-13d54a9781d5
+		sourceLineageTag: Paper_Claim_Indicator
+		summarizeBy: none
+		sourceColumn: Paper_Claim_Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reason_Code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b03e4de3-1ab1-4b34-99e0-88de2762e488
+		sourceLineageTag: Reason_Code
+		summarizeBy: none
+		sourceColumn: Reason_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remark_Code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: de5be068-949e-49e5-9686-725acc4ff12a
+		sourceLineageTag: Remark_Code
+		summarizeBy: none
+		sourceColumn: Remark_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cheque_Number
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9194b6ea-2d7c-4eeb-97b0-a5758af6a882
+		sourceLineageTag: Cheque_Number
+		summarizeBy: none
+		sourceColumn: Cheque_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payment_Method
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fc5c81dd-dfd2-474d-9a3b-9d30155e9bf6
+		sourceLineageTag: Payment_Method
+		summarizeBy: none
+		sourceColumn: Payment_Method
+
+		annotation SummarizationSetBy = Automatic
+
+	column COB_Indicator
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 9bff7cce-45cb-43a6-862c-165cc0468f95
+		sourceLineageTag: COB_Indicator
+		summarizeBy: none
+		sourceColumn: COB_Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Submitted_Amount
+		dataType: double
+		sourceProviderType: float
+		lineageTag: dd2e50cf-fc2c-4382-af06-7bcd5451aa70
+		sourceLineageTag: Submitted_Amount
+		summarizeBy: sum
+		sourceColumn: Submitted_Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Eligible_Amount
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 32446813-6b24-4770-8338-1d443e246ed9
+		sourceLineageTag: Eligible_Amount
+		summarizeBy: sum
+		sourceColumn: Eligible_Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COB_Amount
+		dataType: double
+		sourceProviderType: float
+		lineageTag: be1ee2ae-0892-4261-a9d8-17ff1ec17718
+		sourceLineageTag: COB_Amount
+		summarizeBy: sum
+		sourceColumn: COB_Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Paid_Amount
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 5121a4bb-66af-4c60-a39a-da6d1c0c8cb2
+		sourceLineageTag: Paid_Amount
+		summarizeBy: sum
+		sourceColumn: Paid_Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Source
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 792b0815-e246-4004-b06b-1bcfd667cf55
+		sourceLineageTag: Source
+		summarizeBy: none
+		sourceColumn: Source
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Current_Participation_Type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5084518f-104f-46d7-8c01-0d43fa752d2d
+		sourceLineageTag: Current_Participation_Type
+		summarizeBy: none
+		sourceColumn: Current_Participation_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Post_Determination_Indicator
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5fd2e42a-99b1-4c0a-9a7d-cc12aa3fab42
+		sourceLineageTag: Post_Determination_Indicator
+		summarizeBy: none
+		sourceColumn: Post_Determination_Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Procedure_Code_Submitted
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 44efbe85-28d7-4b28-aa88-f9162e871027
+		sourceLineageTag: Procedure_Code_Submitted
+		summarizeBy: none
+		sourceColumn: Procedure_Code_Submitted
+
+		annotation SummarizationSetBy = Automatic
+
+	column Procedure_Code_Paid
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 26b163bd-56c2-4050-9d62-a889447a830c
+		sourceLineageTag: Procedure_Code_Paid
+		summarizeBy: none
+		sourceColumn: Procedure_Code_Paid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Schedule
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 42b231c5-8b33-44d2-a900-e119ff4c45e3
+		sourceLineageTag: Schedule
+		summarizeBy: none
+		sourceColumn: Schedule
+
+		annotation SummarizationSetBy = Automatic
+
+	column Procedure_Submitted_Description_EN
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9aa8d1e9-86a1-4786-a7fe-d2375b6d8b6f
+		sourceLineageTag: Procedure_Submitted_Description_EN
+		summarizeBy: none
+		sourceColumn: Procedure_Submitted_Description_EN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Procedure_Submitted_Description_FR
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6e78ecf7-19e5-484e-af21-a0bae5be99a7
+		sourceLineageTag: Procedure_Submitted_Description_FR
+		summarizeBy: none
+		sourceColumn: Procedure_Submitted_Description_FR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Procedure_Paid_Description_EN
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cbc3a146-46fd-46f2-8ad4-c86ac1b28957
+		sourceLineageTag: Procedure_Paid_Description_EN
+		summarizeBy: none
+		sourceColumn: Procedure_Paid_Description_EN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Procedure_Paid_Description_FR
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 489ea9e6-fc47-4dbe-8b30-0c3a2efa1e4e
+		sourceLineageTag: Procedure_Paid_Description_FR
+		summarizeBy: none
+		sourceColumn: Procedure_Paid_Description_FR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reason_Description
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9bcd9220-97bb-4e1d-9413-1447cf771055
+		sourceLineageTag: Reason_Description
+		summarizeBy: none
+		sourceColumn: Reason_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remark_Description
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 206a655e-ce11-4532-865e-2d12a783733f
+		sourceLineageTag: Remark_Description
+		summarizeBy: none
+		sourceColumn: Remark_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cl90 = entity
+		mode: directLake
+		source
+			entityName: cl90
+			schemaName: sunlife_gold
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

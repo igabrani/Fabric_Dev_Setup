@@ -1,0 +1,49 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "RefreshDataflow",
+        "typeProperties": {
+          "dataflowId": "a59adae1-4273-40d2-b867-4190d557fc8b",
+          "workspaceId": "4748fbe5-9b18-4aac-9d74-f79c39ff81db",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Refreshing the dataflow",
+        "description": "This refreshes the dataflow gen2 I have set up to dynamically select the most recent file which should hopefully fix the metadata mismatch on its own",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "70a9862f-0a0a-be64-40d8-0e8c42464ba4",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Delta to CSV",
+        "description": "This automatically takes the delta tables and adds a copy of it in csv format",
+        "dependsOn": [
+          {
+            "activity": "Refreshing the dataflow",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

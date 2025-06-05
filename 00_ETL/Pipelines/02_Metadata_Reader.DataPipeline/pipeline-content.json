@@ -1,0 +1,151 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "GetMetadata",
+        "typeProperties": {
+          "datasetSettings": {
+            "type": "DelimitedText",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": {
+                  "value": "@pipeline().parameters.p_string_folder_name",
+                  "type": "Expression"
+                }
+              },
+              "columnDelimiter": ",",
+              "quoteChar": "\"",
+              "escapeChar": "\\",
+              "firstRowAsHeader": true
+            },
+            "schema": [],
+            "linkedService": {
+              "name": "Bronze_Lakehouse",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "6b3eefbe-f8a7-8f13-4e5f-37d8b4c04e3f",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "fieldList": [
+            "childItems",
+            "lastModified"
+          ],
+          "storeSettings": {
+            "type": "LakehouseReadSettings",
+            "recursive": true,
+            "enablePartitionDiscovery": false,
+            "modifiedDatetimeStart": {
+              "value": "@pipeline().parameters.p_string_modified_datetime_start",
+              "type": "Expression"
+            }
+          },
+          "formatSettings": {
+            "type": "DelimitedTextReadSettings"
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Get New Files",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@activity('Get New Files').output.childItems",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "AppendVariable",
+              "typeProperties": {
+                "variableName": "v_array_files",
+                "value": {
+                  "value": "@item().name",
+                  "type": "Expression"
+                }
+              },
+              "name": "Append v_array_files",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach New File",
+        "dependsOn": [
+          {
+            "activity": "Get New Files",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "pipelineReturnValue",
+          "value": [
+            {
+              "key": "rv_array_final_file_list",
+              "value": {
+                "type": "Expression",
+                "content": "@variables('v_array_files')"
+              }
+            }
+          ],
+          "setSystemVariable": true
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "rv_array_final_file_list",
+        "dependsOn": [
+          {
+            "activity": "ForEach New File",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "p_string_folder_name": {
+        "type": "string",
+        "defaultValue": "SunLife/FI02"
+      },
+      "p_string_modified_datetime_start": {
+        "type": "string",
+        "defaultValue": "2024-10-08T13:12:48.4045544Z"
+      }
+    },
+    "variables": {
+      "v_array_files": {
+        "type": "Array"
+      },
+      "v_array_final_file_list": {
+        "type": "Array"
+      },
+      "v_string_source": {
+        "type": "String"
+      },
+      "v_string_date": {
+        "type": "String"
+      }
+    }
+  }
+}

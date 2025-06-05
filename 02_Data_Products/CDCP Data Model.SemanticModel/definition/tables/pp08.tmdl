@@ -1,0 +1,153 @@
+table pp08
+	lineageTag: c759a947-b8c8-460b-b15f-beb6daa2ad5c
+	sourceLineageTag: [sunlife].[pp08]
+
+	column Provider_ID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 864356f7-af68-4cd1-b414-49ab12d645d4
+		sourceLineageTag: Provider_ID
+		summarizeBy: none
+		sourceColumn: Provider_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_PT
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 47858255-c24f-4da9-9de8-e1b6d63f1550
+		sourceLineageTag: Provider_PT
+		summarizeBy: none
+		sourceColumn: Provider_PT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_PT_Alt
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7b136e3b-2ef7-4ff5-947d-a70f62b9b384
+		sourceLineageTag: Provider_PT_Alt
+		summarizeBy: none
+		sourceColumn: Provider_PT_Alt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Postal_Code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c873fa28-254e-4247-be2a-ec36ca49cf7a
+		sourceLineageTag: Provider_Postal_Code
+		summarizeBy: none
+		sourceColumn: Provider_Postal_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_FSA
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 430e8672-f99e-48c7-a052-801975782552
+		sourceLineageTag: Provider_FSA
+		summarizeBy: none
+		sourceColumn: Provider_FSA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Area_Type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 117696a0-5ddf-4512-9bff-a303a333b292
+		sourceLineageTag: Provider_Area_Type
+		summarizeBy: none
+		sourceColumn: Provider_Area_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Participating_Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: 81738b09-bd81-44ce-a8e0-c7c53fdafdc2
+		sourceLineageTag: Participating_Date
+		summarizeBy: none
+		sourceColumn: Participating_Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Enrolled_Status
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: ff8a28f9-862c-4566-b9be-2ea4ba6e5396
+		sourceLineageTag: Enrolled_Status
+		summarizeBy: none
+		sourceColumn: Enrolled_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0ab17027-f0be-4992-bfa8-41c41640bfc3
+		sourceLineageTag: Specialty
+		summarizeBy: none
+		sourceColumn: Specialty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Language
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cb5daaca-823e-4328-a984-08aa052ee288
+		sourceLineageTag: Language
+		summarizeBy: none
+		sourceColumn: Language
+
+		annotation SummarizationSetBy = Automatic
+
+	column Direct_Billing
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 91f7e655-3707-40c4-88df-c13ecfaa4803
+		sourceLineageTag: Direct_Billing
+		summarizeBy: none
+		sourceColumn: Direct_Billing
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: date
+		lineageTag: d5aa0792-cda4-4f0c-a525-8eb8be697421
+		sourceLineageTag: Source
+		summarizeBy: none
+		sourceColumn: Source
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	partition pp08 = entity
+		mode: directLake
+		source
+			entityName: pp08
+			schemaName: sunlife
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

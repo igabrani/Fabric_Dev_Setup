@@ -1,0 +1,34 @@
+model Model
+	culture: en-US
+	collation: Latin1_General_100_BIN2_UTF8
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.139.7496.1 (Main)+061188de2d27b556d0c15d8f70c4426f68783390
+
+annotation PBI_QueryOrder = ["DatabaseQuery"]
+
+annotation PBI_ProTooling = ["WebModelingEdit","DaxQueryView_Desktop"]
+
+ref table contact_center_metrics
+ref table pp08
+ref table fi02
+ref table cl90
+ref table esdc_intake_pt_enrolled
+ref table esdc_intake_pt_applications
+ref table grouping_specialty
+ref table grouping_age
+ref table grouping_pt
+ref table _measure_table
+ref table date_table
+ref table cl92_temp
+ref table preauth_decline_codes
+ref table cl92
+
+ref cultureInfo en-US
+

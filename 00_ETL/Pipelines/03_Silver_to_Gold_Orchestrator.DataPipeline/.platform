@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "03_Silver_to_Gold_Orchestrator"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4f491cb7-30b5-9112-43c2-7f843eaff1f8"
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "ede520b9-3b62-92aa-4dce-f916d3d61313",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Run Data_Source_Check",
+        "dependsOn": []
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "v_int_action_needed",
+          "value": {
+            "value": "@Json(activity('Run Data_Source_Check').output.result.exitValue).action_needed",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set v_int_action_needed",
+        "dependsOn": [
+          {
+            "activity": "Run Data_Source_Check",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "IfCondition",
+        "typeProperties": {
+          "expression": {
+            "value": "@equals(variables('v_int_action_needed'), 1)",
+            "type": "Expression"
+          },
+          "ifTrueActivities": [
+            {
+              "type": "ExecutePipeline",
+              "typeProperties": {
+                "pipeline": {
+                  "referenceName": "801a9382-c62b-b31e-485a-a8cee5a8d740",
+                  "type": "PipelineReference"
+                },
+                "parameters": {
+                  "p_array_sources_priority_1": {
+                    "value": "@variables('v_array_sources_priority_1')",
+                    "type": "Expression"
+                  },
+                  "p_array_sources_priority_2": {
+                    "value": "@variables('v_array_sources_priority_2')",
+                    "type": "Expression"
+                  },
+                  "p_array_files_priority_1": {
+                    "value": "@variables('v_array_files_priority_1')",
+                    "type": "Expression"
+                  },
+                  "p_array_files_priority_2": {
+                    "value": "@variables('v_array_files_priority_2')",
+                    "type": "Expression"
+                  }
+                },
+                "waitOnCompletion": true
+              },
+              "policy": {
+                "secureInput": false
+              },
+              "name": "Invoke 02_Sources_Loop",
+              "dependsOn": [
+                {
+                  "activity": "Set v_array_files_priority_2",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "v_int_new_entries",
+                "value": {
+                  "value": "@INT(json(activity('Run Data_Source_Check').output.result.exitValue).new_entries)",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set v_int_new_entries_copy1",
+              "dependsOn": []
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "v_array_sources_priority_1",
+                "value": {
+                  "value": "@Json(activity('Run Data_Source_Check').output.result.exitValue).sources_priority_1",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set v_array_sources_priority_1",
+              "dependsOn": [
+                {
+                  "activity": "Set v_int_new_entries_copy1",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "v_array_sources_priority_2",
+                "value": {
+                  "value": "@Json(activity('Run Data_Source_Check').output.result.exitValue).sources_priority_2",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set v_array_sources_priority_2",
+              "dependsOn": [
+                {
+                  "activity": "Set v_array_sources_priority_1",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "v_array_files_priority_1",
+                "value": {
+                  "value": "@Json(activity('Run Data_Source_Check').output.result.exitValue).files_priority_1",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set v_array_files_priority_1",
+              "dependsOn": [
+                {
+                  "activity": "Set v_array_sources_priority_2",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "v_array_files_priority_2",
+                "value": {
+                  "value": "@Json(activity('Run Data_Source_Check').output.result.exitValue).files_priority_2",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set v_array_files_priority_2",
+              "dependsOn": [
+                {
+                  "activity": "Set v_array_files_priority_1",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ],
+          "ifFalseActivities": []
+        },
+        "name": "IF v_string_action_needed EQUALS 1",
+        "dependsOn": [
+          {
+            "activity": "Set v_int_action_needed",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "c60ae150-a981-8850-4e4c-b527fbf20f56",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "files_priority_1_str": {
+              "value": {
+                "value": "@variables('v_array_files_priority_1')",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "files_priority_2_str": {
+              "value": {
+                "value": "@variables('v_array_files_priority_2')",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Run Update_Data_Source",
+        "dependsOn": [
+          {
+            "activity": "IF v_string_action_needed EQUALS 1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "variables": {
+      "v_int_action_needed": {
+        "type": "Integer"
+      },
+      "v_int_new_entries": {
+        "type": "Integer"
+      },
+      "v_array_sources_priority_1": {
+        "type": "Array"
+      },
+      "v_array_sources_priority_2": {
+        "type": "Array"
+      },
+      "v_array_files_priority_1": {
+        "type": "Array"
+      },
+      "v_array_files_priority_2": {
+        "type": "Array"
+      }
+    }
+  }
+}

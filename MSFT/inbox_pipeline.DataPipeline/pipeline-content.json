@@ -1,0 +1,343 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "IfCondition",
+        "typeProperties": {
+          "expression": {
+            "value": "@contains(string(activity('Get lakehouse providers').output.childItems),pipeline().parameters.provider)",
+            "type": "Expression"
+          },
+          "ifTrueActivities": [],
+          "ifFalseActivities": [
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "bbcc17cd-eed5-b51c-4dbe-b1900260f657",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "provider": {
+                    "value": {
+                      "value": "@pipeline().parameters.provider",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "creating the new provider",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "If the provider is old",
+        "dependsOn": [
+          {
+            "activity": "Get lakehouse providers",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "GetMetadata",
+        "typeProperties": {
+          "datasetSettings": {
+            "type": "Binary",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "main"
+              }
+            },
+            "linkedService": {
+              "name": "Files_Lakehouse",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "b835d776-8c0f-a90f-4af4-207b4c00abc9",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "fieldList": [
+            "childItems"
+          ],
+          "storeSettings": {
+            "type": "LakehouseReadSettings",
+            "recursive": true,
+            "enablePartitionDiscovery": false
+          },
+          "formatSettings": {
+            "type": "BinaryReadSettings"
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Get lakehouse providers",
+        "dependsOn": []
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "BinarySource",
+            "formatSettings": {
+              "type": "BinaryReadSettings"
+            },
+            "storeSettings": {
+              "type": "FileServerReadSettings",
+              "recursive": true,
+              "deleteFilesAfterCompletion": true
+            },
+            "datasetSettings": {
+              "type": "Binary",
+              "typeProperties": {
+                "location": {
+                  "type": "FileServerLocation",
+                  "folderPath": {
+                    "value": "@pipeline().parameters.source_path",
+                    "type": "Expression"
+                  }
+                }
+              },
+              "externalReferences": {
+                "connection": "92282452-5bcd-46d4-9d2f-b8912edd6edb"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "BinarySink",
+            "storeSettings": {
+              "type": "LakehouseWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Binary",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": {
+                    "value": "@pipeline().parameters.lakehouse_temp_path",
+                    "type": "Expression"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "Files_Lakehouse",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "b835d776-8c0f-a90f-4af4-207b4c00abc9",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy provider inbox content",
+        "dependsOn": [
+          {
+            "activity": "If the provider is old",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "IfCondition",
+        "typeProperties": {
+          "expression": {
+            "value": "@greater(length(activity('Get the provider inbox content').output.childItems), 0)",
+            "type": "Expression"
+          },
+          "ifTrueActivities": [
+            {
+              "type": "SqlServerStoredProcedure",
+              "typeProperties": {
+                "storedProcedureName": "[dbo].[writeLog]",
+                "storedProcedureParameters": {
+                  "logData": {
+                    "value": {
+                      "value": "@concat(pipeline().parameters.lakehouse_path,' :',string(activity('Get the provider inbox content').output.childItems))",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "linkedService": {
+                "name": "Logging_warehouse",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "2707b7f4-4707-4697-b1a1-0d85d3eea937",
+                    "endpoint": "cwip2qsn3yrufi3ixlvmvneje4-4x5uqryytowevhlu66odt74b3m.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "4748fbe5-9b18-4aac-9d74-f79c39ff81db"
+                  },
+                  "annotations": []
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Logging",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "16733425-00c1-89b4-4731-c0c1bd701751",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "provider": {
+                    "value": {
+                      "value": "@pipeline().parameters.provider",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "parent_folder": {
+                    "value": "main",
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 5,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "move from temp to final",
+              "dependsOn": [
+                {
+                  "activity": "Logging",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ],
+          "ifFalseActivities": []
+        },
+        "name": "If the provider inbox is not empty",
+        "dependsOn": [
+          {
+            "activity": "Get the provider inbox content",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "GetMetadata",
+        "typeProperties": {
+          "datasetSettings": {
+            "type": "Binary",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": {
+                  "value": "@pipeline().parameters.lakehouse_temp_path",
+                  "type": "Expression"
+                }
+              }
+            },
+            "linkedService": {
+              "name": "Files_Lakehouse",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "b835d776-8c0f-a90f-4af4-207b4c00abc9",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "fieldList": [
+            "childItems"
+          ],
+          "storeSettings": {
+            "type": "LakehouseReadSettings",
+            "recursive": true,
+            "enablePartitionDiscovery": false
+          },
+          "formatSettings": {
+            "type": "BinaryReadSettings"
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Get the provider inbox content",
+        "dependsOn": [
+          {
+            "activity": "Copy provider inbox content",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "source_path": {
+        "type": "object"
+      },
+      "lakehouse_path": {
+        "type": "string"
+      },
+      "provider": {
+        "type": "string"
+      },
+      "lakehouse_temp_path": {
+        "type": "string"
+      }
+    }
+  }
+}

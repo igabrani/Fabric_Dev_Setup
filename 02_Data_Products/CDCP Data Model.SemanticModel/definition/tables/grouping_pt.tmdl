@@ -1,0 +1,95 @@
+table grouping_pt
+	lineageTag: f1a01545-830d-49f2-8593-b8d6cb3b19dd
+	sourceLineageTag: [grouping].[grouping_pt]
+
+	column Abbreviation
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 56c5c925-83e1-48c0-97fc-242b27434017
+		sourceLineageTag: Abbreviation
+		summarizeBy: none
+		sourceColumn: Abbreviation
+
+		annotation SummarizationSetBy = Automatic
+
+	column PT
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 99dd84c9-f3a7-42c8-b798-e822b59462f4
+		sourceLineageTag: PT
+		summarizeBy: none
+		sourceColumn: PT
+		sortByColumn: PT_Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column PT_Sort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: afd60884-e19d-4c69-ac14-575fb512dd43
+		sourceLineageTag: PT_Sort
+		summarizeBy: sum
+		sourceColumn: PT_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column PT_Group_1
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a6d8bc73-1abb-4a8e-bcde-596a6947fce8
+		sourceLineageTag: PT_Group_1
+		summarizeBy: none
+		sourceColumn: PT_Group_1
+		sortByColumn: PT_Group_1_Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column PT_Group_1_Sort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 2b032e9c-1a67-4a9a-8649-d0e2f5e1cb16
+		sourceLineageTag: PT_Group_1_Sort
+		summarizeBy: sum
+		sourceColumn: PT_Group_1_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column PT_Group_2
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e3f99b0f-d0d5-4f63-9198-3c6cf5422b7a
+		sourceLineageTag: PT_Group_2
+		summarizeBy: none
+		sourceColumn: PT_Group_2
+		sortByColumn: PT_Group_2_Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column PT_Group_2_Sort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 7baf905c-edeb-4ac2-9038-12981b360b8c
+		sourceLineageTag: PT_Group_2_Sort
+		summarizeBy: sum
+		sourceColumn: PT_Group_2_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition grouping_pt = entity
+		mode: directLake
+		source
+			entityName: grouping_pt
+			schemaName: grouping
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

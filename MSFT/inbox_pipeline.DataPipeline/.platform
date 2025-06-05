@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "inbox_pipeline"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8d3c8bc7-7108-9727-4cb2-b614201355bf"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "CDCP Data Model"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2fab0e15-c0a6-bea7-42ee-fe5969b95871"
+  }
+}

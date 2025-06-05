@@ -1,0 +1,28 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "f04adac3-987f-40b7-9205-d20dbc6af539",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "0ef1a640-2115-856e-4e59-688a993488a1",
+        "databaseItemName": "Logging_Eventhouse_DEV"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "147f68d3-7d84-483d-ad6c-1eb627938323",
+        "content": "//***********************************************************************************************************\n// Here are two articles to help you get started with KQL:\n// KQL reference guide - https://aka.ms/KQLguide\n// SQL - KQL conversions - https://aka.ms/sqlcheatsheet\n//***********************************************************************************************************\n\nprint cluster_name = cluster()\n\n",
+        "title": "Tab",
+        "dataSourceId": "f04adac3-987f-40b7-9205-d20dbc6af539"
+      },
+      {
+        "id": "b1cfb569-2e03-4f14-972a-2b7ebdd1d92d",
+        "content": "// Use 'take' to view a sample number of records in the table and check the data.\netl_logs\n| take 100\n",
+        "title": "",
+        "dataSourceId": "f04adac3-987f-40b7-9205-d20dbc6af539"
+      }
+    ]
+  }
+}
